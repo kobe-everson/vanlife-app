@@ -1,7 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
+import cors from "cors";
 
+import authRouter from "./routes/auth.routes.js";
 import usersRouter from "./routes/users.routes.js";
 import projectsRouter from "./routes/projects.routes.js";
 import tasksRouter from "./routes/tasks.routes.js";
@@ -12,7 +14,11 @@ import budgetRouter from "./routes/budget.routes.js";
 const server = express();
 const PORT = process.env.PORT || 4000;
 
+server.use(cors({ origin: "http://localhost:5173", credentials: true }));
 server.use(express.json());
+
+// Auth router
+server.use("/auth", authRouter);
 
 // Users Router
 server.use("/users", usersRouter);

@@ -20,3 +20,15 @@ export async function getUserById(req, res, next) {
     next(err);
   }
 }
+
+export async function getUserByEmail(req, res, next) {
+  try {
+    const user = await Users.findByEmail(req.params.email);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (err) {
+    next(err);
+  }
+}
