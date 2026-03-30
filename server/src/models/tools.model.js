@@ -1,7 +1,7 @@
 import knex from "../db/knex.js";
 
-export function findByProject(projectId) {
-  return knex("tools").where({ project_id: projectId });
+export function findByUser(userId) {
+  return knex("tools").where({ user_id: userId });
 }
 
 export function findById(id) {

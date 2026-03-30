@@ -12,9 +12,9 @@ export function findByEmail(email) {
   return knex("users").where({ email }).first();
 }
 
-export async function create({ email, password_hash }) {
+export async function create({ first_name, last_name, email, password_hash }) {
   const [user] = await knex("users")
-    .insert({ email, password_hash })
+    .insert({ first_name, last_name, email, password_hash })
     .returning("*");
   return user;
 }

@@ -3,24 +3,28 @@
 export async function seed(knex) {
   await knex("build_projects").del();
 
-  // Get first user to associate projects with
-  const user = await knex("users").first();
+  const users = await knex("users").select("id", "email");
 
-  if (!user) {
+  if (users.length === 0) {
     throw new Error("No users found.");
   }
+
+  const kobe =
+    users.find((user) => user.email === "kobe@example.com") || users[0];
+  const kaitlyn =
+    users.find((user) => user.email === "kaitlyn@example.com") || users[1];
 
   const projects = await knex("build_projects")
     .insert([
       {
-        user_id: user.id,
+        user_id: kobe.id,
         name: "Sprinter Van Conversion",
-        description: "Complete interior renovation of a Mercedes Sprinter van",
+        description: `Upfitting a 2024 Mercedes Sprinter 4x4 for full-time van life`,
       },
       {
-        user_id: user.id,
+        user_id: kaitlyn.id,
         name: "Tiny Home Build",
-        description: "Building a 200 sq ft tiny home on a trailer",
+        description: `Building a 300 sq ft tiny home on a trailer`,
       },
     ])
     .returning("*");

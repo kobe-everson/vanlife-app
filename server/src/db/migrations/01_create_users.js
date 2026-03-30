@@ -1,6 +1,8 @@
 export function up(knex) {
   return knex.schema.createTable("users", (table) => {
     table.uuid("id").primary().defaultTo(knex.raw("gen_random_uuid()"));
+    table.text("first_name").notNullable();
+    table.text("last_name").notNullable();
     table.text("email").notNullable().unique();
     table.text("password_hash").notNullable();
 

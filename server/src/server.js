@@ -22,12 +22,12 @@ server.use("/auth", authRouter);
 
 // Users Router
 server.use("/users", usersRouter);
+server.use("/users/:userId/tools", toolsRouter);
 
 // Projects Routers
 server.use("/projects", projectsRouter);
 server.use("/projects/:projectId/tasks", tasksRouter);
 server.use("/projects/:projectId/materials", materialsRouter);
-server.use("/projects/:projectId/tools", toolsRouter);
 server.use("/projects/:projectId/budget", budgetRouter);
 
 server.get("/", (req, res) => {

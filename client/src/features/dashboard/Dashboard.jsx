@@ -1,4 +1,4 @@
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -7,7 +7,7 @@ export default function Dashboard() {
       <h1 className="text-3xl font-bold text-gray-900 mb-6">Dashboard</h1>
       <div className="bg-white rounded-lg shadow p-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          Hello, {user?.name || user?.email}!
+          Hello, {user?.first_name || user?.email}!
         </h2>
         <p className="text-gray-600">
           Manage your van build projects, tasks, materials, tools, and budget

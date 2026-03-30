@@ -2,10 +2,10 @@ export function up(knex) {
   return knex.schema.createTable("tools", (table) => {
     table.uuid("id").primary().defaultTo(knex.raw("gen_random_uuid()"));
     table
-      .uuid("project_id")
+      .uuid("user_id")
       .notNullable()
       .references("id")
-      .inTable("build_projects")
+      .inTable("users")
       .onDelete("CASCADE");
     table.string("name").notNullable();
     table.string("brand");
@@ -18,7 +18,7 @@ export function up(knex) {
 
     table.timestamp("created_at").defaultTo(knex.fn.now());
 
-    table.index("project_id");
+    table.index("user_id");
     table.index("name");
   });
 }

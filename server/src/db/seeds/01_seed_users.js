@@ -9,10 +9,14 @@ export async function seed(knex) {
   const users = await knex("users")
     .insert([
       {
+        first_name: "Kobe",
+        last_name: "Everson",
         email: "kobe@example.com",
         password_hash: defaultPassHash,
       },
       {
+        first_name: "Kaitlyn",
+        last_name: "Everson",
         email: "kaitlyn@example.com",
         password_hash: defaultPassHash,
       },

@@ -51,10 +51,15 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const signup = async (email, password) => {
+  const signup = async ({ firstName, lastName, email, password }) => {
     setLoading(true);
     try {
-      const response = await trySignup(email, password);
+      const response = await trySignup({
+        firstName,
+        lastName,
+        email,
+        password,
+      });
       setUser(response.user);
       setToken(response.token);
       localStorage.setItem("token", response.token);

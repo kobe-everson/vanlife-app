@@ -69,7 +69,7 @@ export async function seed(knex) {
         project_id: project2.id,
         category_id: foundationCat.id,
         name: "Dig foundation",
-        description: "Mark 200 sq ft plot and dig foundation for concrete pour",
+        description: "Mark 300 sq ft plot and dig foundation for concrete pour",
         status: "in_progress",
         order_index: 5,
       },

@@ -1,10 +1,7 @@
 import { Outlet } from "react-router-dom";
-import AppSidebar from "./components/AppSidebar";
-// import { useAuth } from "./context/AuthContext";
+import AppSidebar from "./AppSidebar";
 
 export default function AppLayout() {
-  // const { user, logout } = useAuth();
-
   return (
     <div className="flex min-h-screen bg-gray-200">
       <AppSidebar />

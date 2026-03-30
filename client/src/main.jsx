@@ -1,14 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import PublicRoute from "./components/PublicRoute";
-import PublicLayout from "./components/PublicLayout";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import ProtectedRoute from "./components/ProtectedRoute";
-import AppLayout from "./AppLayout";
-import Dashboard from "./pages/Dashboard";
+import PublicRoute from "./routes/PublicRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import PublicLayout from "./components/layout/PublicLayout";
+import AppLayout from "./components/layout/AppLayout";
+import Login from "./features/auth/Login";
+import Signup from "./features/auth/Signup";
+import Dashboard from "./features/dashboard/Dashboard";
+import Projects from "./features/projects/pages/Projects";
+import NewProject from "./features/projects/pages/NewProject";
+import ProjectDetail from "./features/projects/pages/ProjectDetail";
+import Tools from "./features/tools/pages/Tools";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -46,7 +50,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             </ProtectedRoute>
           }
         >
-          <Route index element={<Dashboard />} />
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="projects" element={<Projects />} />
+          <Route path="projects/new" element={<NewProject />} />
+          <Route path="projects/:projectId" element={<ProjectDetail />} />
+          <Route path="tools" element={<Tools />} />
+          <Route path="*" element={<Navigate to="dashboard" replace />} />
         </Route>
       </Routes>
     </AuthProvider>

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Signup() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,8 +22,13 @@ export default function Signup() {
     }
 
     try {
-      await signup(email, password);
-      navigate("/");
+      await signup({
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message || "Failed to create account");
     }
@@ -52,18 +58,33 @@ export default function Signup() {
         )}
         <div className="rounded-md shadow-md -space-y-px">
           <div>
-            <label htmlFor="name" className="sr-only">
-              Full Name
+            <label htmlFor="firstName" className="sr-only">
+              First Name
             </label>
             <input
-              id="name"
-              name="name"
+              id="firstName"
+              name="firstName"
               type="text"
               required
               className="relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-600 text-gray-900 rounded-t-md focus:outline-none focus:border-blue-500 focus:z-10 sm:text-sm"
-              placeholder="Full Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="lastName" className="sr-only">
+              Last Name
+            </label>
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              required
+              className="relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-600 text-gray-900 focus:outline-none focus:border-blue-500 focus:z-10 sm:text-sm"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div>

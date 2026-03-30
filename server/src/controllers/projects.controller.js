@@ -2,7 +2,7 @@ import * as Projects from "../models/projects.model.js";
 
 export async function getAllProjects(req, res, next) {
   try {
-    const projects = await Projects.findAll();
+    const projects = await Projects.findAllByUserId(req.user.id);
     res.json(projects);
   } catch (err) {
     next(err);
@@ -11,7 +11,10 @@ export async function getAllProjects(req, res, next) {
 
 export async function getProjectById(req, res, next) {
   try {
-    const project = await Projects.findById(req.params.id);
+    const project = await Projects.findByIdAndUserId(
+      req.params.id,
+      req.user.id,
+    );
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
     }

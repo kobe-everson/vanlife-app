@@ -1,8 +1,8 @@
 import express from "express";
-import { getToolsByProject } from "../controllers/tools.controller.js";
+import { getToolsByUser } from "../controllers/tools.controller.js";
 
 const router = express.Router({ mergeParams: true });
 
-router.get("/", getToolsByProject);
+router.get("/", getToolsByUser);
 
 export default router;
