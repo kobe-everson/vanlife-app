@@ -31,3 +31,27 @@ export function getProjectById(id) {
 export function getProjectTasks(projectId) {
   return request(`/projects/${projectId}/tasks`);
 }
+
+export function getToolsForUser(userId) {
+  return request(`/users/${userId}/tools`);
+}
+
+export function createProject(projectData) {
+  return request("/projects", {
+    method: "POST",
+    body: JSON.stringify(projectData),
+  });
+}
+
+export function updateProject(id, projectData) {
+  return request(`/projects/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(projectData),
+  });
+}
+
+export function deleteProject(id) {
+  return request(`/projects/${id}`, {
+    method: "DELETE",
+  });
+}

@@ -1,5 +1,9 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { tryLogin, trySignup, fetchProfile } from "../api/auth.js";
+import {
+  tryLogin,
+  trySignup,
+  fetchProfile,
+} from "../features/auth/api/auth.js";
 
 const AuthContext = createContext();
 
@@ -35,6 +39,7 @@ export function AuthProvider({ children }) {
     restoreSession();
   }, []);
 
+  // Login function
   const login = async (email, password) => {
     setLoading(true);
     try {
@@ -51,6 +56,7 @@ export function AuthProvider({ children }) {
     }
   };
 
+  // Signup function
   const signup = async ({ firstName, lastName, email, password }) => {
     setLoading(true);
     try {
@@ -72,6 +78,7 @@ export function AuthProvider({ children }) {
     }
   };
 
+  // Logout function
   const logout = () => {
     setUser(null);
     setToken(null);
@@ -79,6 +86,7 @@ export function AuthProvider({ children }) {
     localStorage.removeItem("user");
   };
 
+  // Return the AuthContext provider with useStates and functions
   const value = {
     user,
     token,

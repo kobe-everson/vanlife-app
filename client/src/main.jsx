@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PublicRoute from "./routes/PublicRoute";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -19,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
     <AuthProvider>
       <Routes>
-        {/* Public routes */}
+        {/* Public routes for login and signup */}
         <Route
           path="/login"
           element={
@@ -41,7 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           }
         />
 
-        {/* Protected routes */}
+        {/* Protected route wrapping all routes to various logged-in features */}
         <Route
           path="/*"
           element={
